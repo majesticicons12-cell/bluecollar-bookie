@@ -24,7 +24,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    env: {
+      supabase: !!process.env.SUPABASE_URL,
+      twilio: !!process.env.TWILIO_ACCOUNT_SID,
+      meta: !!process.env.META_ACCESS_TOKEN,
+      groq: !!process.env.GROQ_API_KEY,
+      lemon: !!process.env.LEMONSQUEEZY_API_KEY,
+      jwt: !!process.env.JWT_SECRET
+    }
+  });
 });
 
 app.use('/api/auth', authRoutes);
