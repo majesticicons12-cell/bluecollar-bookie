@@ -18,12 +18,19 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-const rawParser = express.raw({ type: 'application/json' });
-app.use('/api/stripe/webhook', rawParser);
-app.use('/api/payments/webhook', express.json());
+app.use((req, res, next) => {
+  let data = '';
+  req.on('data', chunk => { data += chunk; });
+  req.on('end', () => {
+    try {
+      if (data) req.body = JSON.parse(data);
+      else req.body = {};
+    } catch (e) {
+      req.body = {};
+    }
+    next();
+  });
+});
 
 app.get('/api/health', (req, res) => {
   res.json({
