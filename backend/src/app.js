@@ -42,17 +42,7 @@ app.all('/api/debug/test', async (req, res) => {
       .from('users')
       .select('id')
       .limit(1);
-    res.json({
-      success: !error,
-      data,
-      error: error?.message || null,
-      body: req.body,
-      bodyType: typeof req.body,
-      bodyStr: JSON.stringify(req.body).substring(0, 200),
-      method: req.method,
-      contentType: req.headers['content-type'],
-      contentLength: req.headers['content-length']
-    });
+    res.json({ success: !error, data, error: error?.message || null });
   } catch (e) {
     res.json({ success: false, error: e.message });
   }
@@ -70,10 +60,10 @@ app.use('/api/admin', adminRoutes);
 
 app.use((err, req, res, next) => {
   if (err.type === 'entity.parse.failed') {
-    return res.status(400).json({ error: 'Invalid JSON', detail: err.message });
+    return res.status(400).json({ error: 'Invalid JSON body' });
   }
   console.error('Unhandled:', err);
-  res.status(500).json({ error: 'Something went wrong!', detail: err.message });
+  res.status(500).json({ error: 'Something went wrong!' });
 });
 
 module.exports = app;
