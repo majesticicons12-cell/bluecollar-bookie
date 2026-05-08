@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - BlueCollar Bookie</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="dashboard.html" class="logo">
+                <span class="logo-icon">&#9881;</span>
+                <span class="logo-text">BlueCollar <span class="highlight">Bookie</span></span>
+            </a>
+            <div class="nav-right">
+                <button id="themeToggle" class="theme-toggle-btn" title="Toggle theme">&#127769;</button>
+                <span id="userName" class="user-greeting"></span>
+                <button id="logoutBtn" class="btn btn-outline btn-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="admin-main">
+        <div class="admin-layout">
+            <aside class="admin-sidebar">
+                <nav class="admin-nav">
+                    <button class="admin-nav-btn active" data-section="dashboard">Dashboard</button>
+                    <button class="admin-nav-btn" data-section="users">Users</button>
+                    <button class="admin-nav-btn" data-section="logs">Activity Log</button>
+                </nav>
+            </aside>
+
+            <div class="admin-content">
+                <section id="section-dashboard" class="admin-section active">
+                    <h2>Platform Overview</h2>
+                    <div class="admin-stats-grid">
+                        <div class="admin-stats-card">
+                            <div class="stat-num" id="adminTotalUsers">0</div>
+                            <div class="stat-lbl">Total Users</div>
+                        </div>
+                        <div class="admin-stats-card">
+                            <div class="stat-num" id="adminActiveSubs">0</div>
+                            <div class="stat-lbl">Active Subscriptions</div>
+                        </div>
+                        <div class="admin-stats-card">
+                            <div class="stat-num" id="adminTotalLeads">0</div>
+                            <div class="stat-lbl">Total Leads</div>
+                        </div>
+                        <div class="admin-stats-card">
+                            <div class="stat-num" id="adminTotalAppts">0</div>
+                            <div class="stat-lbl">Appointments</div>
+                        </div>
+                        <div class="admin-stats-card">
+                            <div class="stat-num" id="adminSetupComplete">0</div>
+                            <div class="stat-lbl">Setup Complete</div>
+                        </div>
+                    </div>
+                    <h3 style="margin-top:24px;">Plan Distribution</h3>
+                    <div class="plan-bars" id="planBars"></div>
+                </section>
+
+                <section id="section-users" class="admin-section">
+                    <div class="admin-table-header">
+                        <h2>All Users</h2>
+                        <input type="text" id="userSearch" placeholder="Search by name or email..." class="search-input">
+                    </div>
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Business</th>
+                                    <th>Plan</th>
+                                    <th>Status</th>
+                                    <th>Setup</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="section-logs" class="admin-section">
+                    <h2>Activity Log</h2>
+                    <div class="admin-table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Admin</th>
+                                    <th>Action</th>
+                                    <th>Target User</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logsTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

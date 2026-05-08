@@ -1,0 +1,531 @@
+.setup-main {
+    padding: 100px 0 60px;
+    min-height: 100vh;
+    background: var(--gray-50);
+}
+
+.setup-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+}
+
+.setup-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.setup-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 8px;
+}
+
+.setup-header p {
+    color: var(--gray-600);
+    font-size: 1.05rem;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.progress-step.active .step-circle {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.progress-step.completed .step-circle {
+    background: var(--success);
+    color: var(--white);
+}
+
+.progress-step span {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+.progress-step.active span {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.progress-line {
+    width: 60px;
+    height: 3px;
+    background: var(--gray-200);
+    margin: 0 8px;
+    margin-bottom: 20px;
+}
+
+.setup-step {
+    display: none;
+}
+
+.setup-step.active {
+    display: block;
+}
+
+.step-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.step-content > p {
+    color: var(--gray-600);
+    margin-bottom: 24px;
+}
+
+.info-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.info-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.info-card ul {
+    list-style: none;
+}
+
+.info-card ul li {
+    padding: 6px 0;
+    color: var(--gray-600);
+    font-size: 0.95rem;
+}
+
+.info-card ul li::before {
+    content: '&#10004; ';
+    color: var(--success);
+    font-weight: 700;
+}
+
+.number-display {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.number-display label {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.number-value {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.carrier-selector {
+    margin-bottom: 24px;
+}
+
+.carrier-selector label {
+    display: block;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.carrier-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.carrier-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 12px;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.carrier-btn:hover {
+    border-color: var(--primary);
+    background: var(--gray-50);
+}
+
+.carrier-btn.selected {
+    border-color: var(--primary);
+    background: rgba(30, 64, 175, 0.05);
+}
+
+.carrier-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.carrier-btn[data-carrier="verizon"] .carrier-logo {
+    background: #cd0404;
+    color: white;
+}
+
+.carrier-btn[data-carrier="att"] .carrier-logo {
+    background: #0057b8;
+    color: white;
+}
+
+.carrier-btn[data-carrier="tmobile"] .carrier-logo {
+    background: #e20074;
+    color: white;
+}
+
+.carrier-btn[data-carrier="other"] .carrier-logo {
+    background: var(--gray-400);
+    color: white;
+}
+
+.carrier-btn span:last-child {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.instructions-panel {
+    margin-bottom: 24px;
+}
+
+.instructions-panel h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+}
+
+#instructionsList {
+    margin-bottom: 20px;
+}
+
+.instruction-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.instruction-step:last-child {
+    border-bottom: none;
+}
+
+.step-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.step-text {
+    color: var(--gray-700);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.tip-card {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.tip-card strong {
+    color: #92400e;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.tip-card p {
+    color: #78350f;
+    margin: 0;
+}
+
+.tip-card code {
+    background: rgba(245, 158, 11, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.test-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.test-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.test-card p {
+    color: var(--gray-600);
+    margin-bottom: 20px;
+}
+
+.test-result {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.test-result h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.test-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.troubleshooting-panel {
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.troubleshooting-panel h3 {
+    color: #991b1b;
+    margin-bottom: 12px;
+}
+
+.troubleshooting-panel ul {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.troubleshooting-panel ul li {
+    padding: 6px 0;
+    color: #7f1d1d;
+    font-size: 0.9rem;
+}
+
+.troubleshooting-panel ul li::before {
+    content: '&#8226; ';
+    color: #dc2626;
+}
+
+.success-content {
+    text-align: center;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #d1fae5;
+    color: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 24px;
+}
+
+.summary-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin: 24px 0;
+    text-align: left;
+}
+
+.summary-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item .label {
+    color: var(--gray-600);
+}
+
+.summary-item .value {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.summary-item .value.success {
+    color: var(--success);
+}
+
+.next-steps {
+    text-align: left;
+    margin: 24px 0;
+}
+
+.next-steps h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.next-steps ul {
+    list-style: none;
+}
+
+.next-steps ul li {
+    padding: 6px 0;
+    color: var(--gray-600);
+}
+
+.next-steps ul li::before {
+    content: '&#10145; ';
+    color: var(--primary);
+}
+
+.error-content {
+    text-align: center;
+}
+
+.error-icon {
+    width: 80px;
+    height: 80px;
+    background: #fee2e2;
+    color: var(--error);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 24px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--gray-200);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 40px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-greeting {
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .setup-container {
+        padding: 24px;
+    }
+
+    .carrier-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .test-actions {
+        flex-direction: column;
+    }
+
+    .progress-line {
+        width: 30px;
+    }
+
+    .step-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+
+    .progress-step span {
+        font-size: 0.7rem;
+    }
+}

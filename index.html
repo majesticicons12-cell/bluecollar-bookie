@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueCollar Bookie - AI Receptionist for Contractors</title>
+    <meta name="description" content="Never miss a lead again. BlueCollar Bookie is your 24/7 AI receptionist that captures leads, books appointments, and notifies you via WhatsApp.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-icon">&#9881;</span>
+                <span class="logo-text">BlueCollar <span class="highlight">Bookie</span></span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact" class="btn btn-primary">Get Started</a></li>
+                <li><button id="themeToggle" class="theme-toggle-btn" style="background:none;border:1px solid var(--gray-300);border-radius:8px;padding:8px 12px;cursor:pointer;font-size:1.2rem;">&#127769;</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="pulse"></span>
+                    24/7 AI Receptionist
+                </div>
+                <h1>Never Miss a <span class="gradient-text">Lead</span> While On-Site</h1>
+                <p class="hero-subtitle">
+                    Your phone rings while you're up on a roof or under a sink. We answer it, 
+                    qualify the lead, book the appointment, and send you all the details via WhatsApp. 
+                    Zero missed opportunities.
+                </p>
+                <div class="hero-cta">
+                    <a href="#pricing" class="btn btn-primary btn-lg">Start Free Trial</a>
+                    <a href="#how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Lead Capture Rate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">&lt;30s</span>
+                        <span class="stat-label">Response Time</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2,500+</span>
+                        <span class="stat-label">Contractors Trust Us</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="chat-bubble incoming">
+                            <p>Hi! I noticed you called Mike's Plumbing. How can we help?</p>
+                            <span class="time">10:42 AM</span>
+                        </div>
+                        <div class="chat-bubble outgoing">
+                            <p>Hi, I have a leaking pipe in my kitchen</p>
+                            <span class="time">10:43 AM</span>
+                        </div>
+                        <div class="chat-bubble incoming">
+                            <p>Got it! I can book Mike for tomorrow at 9 AM. Does that work?</p>
+                            <span class="time">10:43 AM</span>
+                        </div>
+                        <div class="chat-bubble outgoing">
+                            <p>Perfect, see you then!</p>
+                            <span class="time">10:44 AM</span>
+                        </div>
+                        <div class="chat-bubble incoming booking">
+                            <p>&#10004; Appointment booked!<br><strong>Mike's Plumbing</strong><br>Tomorrow, 9:00 AM<br>123 Oak Street</p>
+                            <span class="time">10:44 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="trust-bar">
+        <div class="container">
+            <p>Trusted by contractors across</p>
+            <div class="trust-logos">
+                <span class="trust-item">Plumbing</span>
+                <span class="trust-item">HVAC</span>
+                <span class="trust-item">Electrical</span>
+                <span class="trust-item">Roofing</span>
+                <span class="trust-item">Landscaping</span>
+                <span class="trust-item">Painting</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="section how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Simple Process</span>
+                <h2>How It Works</h2>
+                <p>Four steps from missed call to booked appointment. Fully automated.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">&#128222;</div>
+                    <h3>Call Detection</h3>
+                    <p>When a client calls and you can't answer, our system instantly detects the missed call via Twilio or Wati integration.</p>
+                    <div class="step-tech">
+                        <span class="tech-badge">Twilio</span>
+                        <span class="tech-badge">Wati</span>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">&#129302;</div>
+                    <h3>AI Engagement</h3>
+                    <p>Our AI sends an instant WhatsApp message asking about their needs, location, and preferred timing for the job.</p>
+                    <div class="step-tech">
+                        <span class="tech-badge">Gemini AI</span>
+                        <span class="tech-badge">OpenAI</span>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">&#128197;</div>
+                    <h3>Auto-Booking</h3>
+                    <p>The AI extracts all details from the conversation and automatically creates a confirmed appointment in your calendar.</p>
+                    <div class="step-tech">
+                        <span class="tech-badge">Smart Scheduling</span>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">&#128241;</div>
+                    <h3>Instant Notification</h3>
+                    <p>You receive a WhatsApp notification with complete job details, client info, location, and scheduled time.</p>
+                    <div class="step-tech">
+                        <span class="tech-badge">WhatsApp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Why Contractors Choose Us</span>
+                <h2>Built for the Trades</h2>
+                <p>Every feature designed with real contractors in mind.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#9200;</div>
+                    <h3>24/7 Availability</h3>
+                    <p>Leads don't just come during business hours. Our AI works nights, weekends, and holidays so you never miss an opportunity.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128172;</div>
+                    <h3>Natural Conversations</h3>
+                    <p>Powered by advanced AI that sounds human. Clients won't know they're chatting with a bot until you tell them.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128205;</div>
+                    <h3>Smart Location Handling</h3>
+                    <p>Automatically captures job addresses and checks if they're within your service area before booking.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128202;</div>
+                    <h3>Lead Qualification</h3>
+                    <p>AI asks the right questions to qualify leads. Know the job type, urgency, and budget before you arrive.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128279;</div>
+                    <h3>Calendar Sync</h3>
+                    <p>Seamlessly integrates with Google Calendar, Outlook, and other scheduling tools you already use.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128274;</div>
+                    <h3>Follow-Up Automation</h3>
+                    <p>Automatic reminders sent to clients before appointments. Reduces no-shows by up to 40%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section demo-section">
+        <div class="container">
+            <div class="demo-content">
+                <h2>See It In Action</h2>
+                <p>Watch how a missed call turns into a booked appointment in under 2 minutes.</p>
+                <div class="demo-flow">
+                    <div class="demo-step">
+                        <div class="demo-icon">&#128222;</div>
+                        <p>Missed Call</p>
+                    </div>
+                    <div class="demo-arrow">&rarr;</div>
+                    <div class="demo-step">
+                        <div class="demo-icon">&#128241;</div>
+                        <p>WhatsApp Sent</p>
+                    </div>
+                    <div class="demo-arrow">&rarr;</div>
+                    <div class="demo-step">
+                        <div class="demo-icon">&#129302;</div>
+                        <p>AI Qualifies</p>
+                    </div>
+                    <div class="demo-arrow">&rarr;</div>
+                    <div class="demo-step">
+                        <div class="demo-icon">&#128197;</div>
+                        <p>Appointment Booked</p>
+                    </div>
+                    <div class="demo-arrow">&rarr;</div>
+                    <div class="demo-step">
+                        <div class="demo-icon">&#9989;</div>
+                        <p>You're Notified</p>
+                    </div>
+                </div>
+                <a href="#pricing" class="btn btn-primary btn-lg">Start Your Free Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Simple Pricing</span>
+                <h2>Choose Your Plan</h2>
+                <p>Start capturing every lead today. No setup fees. Cancel anytime.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic</h3>
+                        <p class="pricing-desc">For solo contractors getting started</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">49</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>&#10004; Up to 50 leads/month</li>
+                        <li>&#10004; WhatsApp AI receptionist</li>
+                        <li>&#10004; Missed call detection</li>
+                        <li>&#10004; Basic appointment booking</li>
+                        <li>&#10004; Email notifications</li>
+                        <li>&#10004; 1 phone number</li>
+                        <li class="disabled">&#10060; Calendar sync</li>
+                        <li class="disabled">&#10060; Follow-up automation</li>
+                        <li class="disabled">&#10060; Custom AI training</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <p class="pricing-desc">For growing contracting businesses</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>&#10004; Up to 200 leads/month</li>
+                        <li>&#10004; WhatsApp AI receptionist</li>
+                        <li>&#10004; Missed call detection</li>
+                        <li>&#10004; Smart appointment booking</li>
+                        <li>&#10004; WhatsApp notifications</li>
+                        <li>&#10004; 3 phone numbers</li>
+                        <li>&#10004; Calendar sync</li>
+                        <li>&#10004; Follow-up automation</li>
+                        <li class="disabled">&#10060; Custom AI training</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <p class="pricing-desc">For established teams & companies</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">$</span>
+                        <span class="amount">149</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>&#10004; Unlimited leads</li>
+                        <li>&#10004; WhatsApp AI receptionist</li>
+                        <li>&#10004; Missed call detection</li>
+                        <li>&#10004; Advanced appointment booking</li>
+                        <li>&#10004; WhatsApp + SMS notifications</li>
+                        <li>&#10004; Unlimited phone numbers</li>
+                        <li>&#10004; Calendar sync</li>
+                        <li>&#10004; Follow-up automation</li>
+                        <li>&#10004; Custom AI training</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
+                </div>
+            </div>
+            <p class="pricing-guarantee">&#128274; 14-day free trial on all plans. No credit card required.</p>
+        </div>
+    </section>
+
+    <section id="faq" class="section faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Common Questions</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How does the AI know about my business?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>During setup, we configure the AI with your business details, services, pricing range, service areas, and availability. The AI learns your preferences and gets smarter over time.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What happens if the AI can't answer a question?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>If the AI encounters something it can't handle, it politely collects the client's information and immediately alerts you. You can then follow up personally.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do I need to install anything?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No installation required. We integrate with your existing phone system through Twilio or Wati. Setup takes less than 15 minutes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I customize the AI's personality?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Premium plan users can fully customize the AI's tone, language, and conversation style to match your brand. Basic and Pro plans include our professional default personality.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What if I want to cancel?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No contracts, no cancellation fees. You can cancel anytime from your dashboard. Your service continues until the end of your billing period.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is my clients' data secure?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. All data is encrypted in transit and at rest. We comply with data protection regulations and never share your client information with third parties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Ready to Stop Missing Leads?</h2>
+                    <p>Join 2,500+ contractors who never miss a call. Start your 14-day free trial today.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">&#128231;</span>
+                            <div>
+                                <strong>Email Us</strong>
+                                <p>hello@bluecollarbookie.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">&#128222;</span>
+                            <div>
+                                <strong>Call Us</strong>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">&#128172;</span>
+                            <div>
+                                <strong>WhatsApp</strong>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <h3>Start Your Free Trial</h3>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="business">Business Name</label>
+                        <input type="text" id="business" name="business" placeholder="Smith Plumbing Co.">
+                    </div>
+                    <div class="form-group">
+                        <label for="plan">Select Plan</label>
+                        <select id="plan" name="plan">
+                            <option value="basic">Basic - $49/month</option>
+                            <option value="pro" selected>Pro - $99/month (Recommended)</option>
+                            <option value="premium">Premium - $149/month</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Start Free Trial</button>
+                    <p class="form-note">No credit card required. 14-day free trial.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">&#9881;</span>
+                        <span class="logo-text">BlueCollar <span class="highlight">Bookie</span></span>
+                    </a>
+                    <p>Your 24/7 AI receptionist for the trades. Never miss a lead again.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BlueCollar Bookie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

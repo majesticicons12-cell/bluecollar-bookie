@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup - BlueCollar Bookie</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/setup.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">&#9881;</span>
+                <span class="logo-text">BlueCollar <span class="highlight">Bookie</span></span>
+            </a>
+            <div class="nav-right">
+                <button id="themeToggle" class="theme-toggle-btn" title="Toggle theme">&#127769;</button>
+                <span id="userName" class="user-greeting"></span>
+                <button id="logoutBtn" class="btn btn-outline btn-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="setup-main">
+        <div class="container">
+            <div class="setup-container">
+                <div class="setup-header">
+                    <h1>Setup Your AI Receptionist</h1>
+                    <p>Get your 24/7 AI receptionist running in 5 minutes</p>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-circle">1</div>
+                        <span>Get Number</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-circle">2</div>
+                        <span>Forward Calls</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-circle">3</div>
+                        <span>Test</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-circle">4</div>
+                        <span>Done</span>
+                    </div>
+                </div>
+
+                <div class="setup-content">
+                    <div id="step1" class="setup-step active">
+                        <div class="step-content">
+                            <h2>Step 1: Get Your Business Number</h2>
+                            <p>We'll assign a dedicated business number that handles all your incoming calls and forwards them to your phone.</p>
+                            
+                            <div class="info-card">
+                                <h3>&#128222; What happens next?</h3>
+                                <ul>
+                                    <li>We buy a US phone number for your business</li>
+                                    <li>It connects to our AI receptionist automatically</li>
+                                    <li>You'll forward your current calls to this number</li>
+                                    <li>Cost: Included in your monthly plan</li>
+                                </ul>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="areaCode">Preferred Area Code (optional)</label>
+                                <input type="text" id="areaCode" placeholder="e.g., 212 for New York" maxlength="3">
+                            </div>
+
+                            <button id="assignNumberBtn" class="btn btn-primary btn-lg">
+                                Assign My Number
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="step2" class="setup-step">
+                        <div class="step-content">
+                            <h2>Step 2: Forward Calls to Your New Number</h2>
+                            <p>Your new business number is ready. Now set up call forwarding on your phone.</p>
+                            
+                            <div class="number-display">
+                                <label>Your BlueCollar Number</label>
+                                <div class="number-value" id="twilioNumber">Loading...</div>
+                                <button class="btn btn-outline btn-sm" id="copyNumberBtn">Copy Number</button>
+                            </div>
+
+                            <div class="carrier-selector">
+                                <label>What carrier is your current phone on?</label>
+                                <div class="carrier-options">
+                                    <button class="carrier-btn" data-carrier="verizon">
+                                        <span class="carrier-logo">V</span>
+                                        <span>Verizon</span>
+                                    </button>
+                                    <button class="carrier-btn" data-carrier="att">
+                                        <span class="carrier-logo">A</span>
+                                        <span>AT&T</span>
+                                    </button>
+                                    <button class="carrier-btn" data-carrier="tmobile">
+                                        <span class="carrier-logo">T</span>
+                                        <span>T-Mobile</span>
+                                    </button>
+                                    <button class="carrier-btn" data-carrier="other">
+                                        <span class="carrier-logo">?</span>
+                                        <span>Other</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="instructionsPanel" class="instructions-panel" style="display:none;">
+                                <h3>Follow these steps:</h3>
+                                <div id="instructionsList"></div>
+                                
+                                <div class="tip-card">
+                                    <strong>&#128161; Quick method:</strong>
+                                    <p>Open your phone dialer and type: <code>*61*{NUMBER}#</code> then press call. This works on most phones.</p>
+                                </div>
+                            </div>
+
+                            <button id="forwardingDoneBtn" class="btn btn-primary btn-lg" style="display:none;">
+                                I've Set Up Call Forwarding
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="step3" class="setup-step">
+                        <div class="step-content">
+                            <h2>Step 3: Test Your Setup</h2>
+                            <p>Let's make sure your call forwarding is working correctly.</p>
+                            
+                            <div class="test-card">
+                                <h3>&#128222; Test Call</h3>
+                                <p>We'll call your BlueCollar number. If forwarding is set up correctly, your phone should ring.</p>
+                                <button id="testCallBtn" class="btn btn-primary btn-lg">
+                                    Send Test Call
+                                </button>
+                            </div>
+
+                            <div id="testResult" class="test-result" style="display:none;">
+                                <h3>Did your phone ring?</h3>
+                                <div class="test-actions">
+                                    <button id="testSuccessBtn" class="btn btn-primary btn-lg">
+                                        &#10004; Yes, it rang!
+                                    </button>
+                                    <button id="testFailBtn" class="btn btn-outline btn-lg">
+                                        &#10060; No, it didn't
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="troubleshootingPanel" class="troubleshooting-panel" style="display:none;">
+                                <h3>&#128295; Troubleshooting</h3>
+                                <ul id="troubleshootingList"></ul>
+                                <button id="retryTestBtn" class="btn btn-outline">Try Test Again</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step4" class="setup-step">
+                        <div class="step-content success-content">
+                            <div class="success-icon">&#10004;</div>
+                            <h2>You're Ready to Go!</h2>
+                            <p>Your AI receptionist is now active and ready to handle missed calls 24/7.</p>
+                            
+                            <div class="summary-card">
+                                <h3>Your Setup Summary</h3>
+                                <div class="summary-item">
+                                    <span class="label">Business Number:</span>
+                                    <span class="value" id="summaryNumber">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Status:</span>
+                                    <span class="value success">Active</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">AI Receptionist:</span>
+                                    <span class="value success">Online</span>
+                                </div>
+                            </div>
+
+                            <div class="next-steps">
+                                <h3>What happens now?</h3>
+                                <ul>
+                                    <li>Customers call your number as usual</li>
+                                    <li>If you miss a call, AI contacts them via WhatsApp instantly</li>
+                                    <li>AI asks about their needs, location, and timing</li>
+                                    <li>Appointment is booked automatically</li>
+                                    <li>You get a WhatsApp notification with all details</li>
+                                </ul>
+                            </div>
+
+                            <a href="dashboard.html" class="btn btn-primary btn-lg">
+                                Go to Dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="stepComplete" class="setup-step">
+                        <div class="step-content success-content">
+                            <div class="success-icon">&#10004;</div>
+                            <h2>Setup Already Complete</h2>
+                            <p>Your AI receptionist is already configured and running.</p>
+                            <a href="dashboard.html" class="btn btn-primary btn-lg">
+                                Go to Dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="stepLoading" class="setup-step">
+                        <div class="step-content">
+                            <div class="loading-spinner"></div>
+                            <p>Setting up your number...</p>
+                        </div>
+                    </div>
+
+                    <div id="stepError" class="setup-step">
+                        <div class="step-content error-content">
+                            <div class="error-icon">&#9888;</div>
+                            <h2>Setup Failed</h2>
+                            <p id="errorMessage">Something went wrong. Please try again.</p>
+                            <button id="retryBtn" class="btn btn-primary btn-lg">Retry</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/setup.js"></script>
+</body>
+</html>
