@@ -257,6 +257,14 @@
   border-color: var(--primary);
 }
 
+[data-theme="dark"] .nav-links a:not(.btn) {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .nav-links a:not(.btn):hover {
+  color: var(--text);
+}
+
 [data-theme="dark"] .admin-sidebar {
   background: var(--bg-secondary);
 }
@@ -389,4 +397,28 @@
 
 [data-theme="dark"] .google-btn:hover {
   background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .preview-card,
+[data-theme="dark"] .preview-stat {
+  background: var(--card);
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .preview-lead:hover,
+[data-theme="dark"] .preview-appt:hover {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .preview-column h3 {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .preview-lead-info h4,
+[data-theme="dark"] .preview-appt-info h4 {
+  color: var(--text);
+}
+
+[data-theme="dark"] .preview-appt-time .date {
+  color: var(--text);
 }
