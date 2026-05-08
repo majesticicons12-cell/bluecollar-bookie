@@ -44,6 +44,10 @@ async function loadDashboard() {
         document.getElementById('userName').textContent = profile.user.name;
         document.getElementById('greetingText').textContent = `Welcome back, ${profile.user.name}!`;
 
+        if (profile.user.role === 'admin') {
+            document.getElementById('adminLink').style.display = 'inline-flex';
+        }
+
         document.getElementById('totalLeads').textContent = stats.stats.totalLeads;
         document.getElementById('qualifiedLeads').textContent = stats.stats.qualifiedLeads;
         document.getElementById('todayAppointments').textContent = stats.stats.todayAppointments;

@@ -63,7 +63,7 @@ app.get('/api/seed/admin', async (req, res) => {
 
     if (existing) {
       const hashed = await bcrypt.hash(password, 10);
-      await supabase.from('users').update({ password: hashed, role: 'admin' }).eq('id', existing.id);
+      await supabase.from('users').update({ password: hashed, role: 'admin', plan: 'premium' }).eq('id', existing.id);
       return res.json({ success: true, message: 'Admin password updated' });
     }
 

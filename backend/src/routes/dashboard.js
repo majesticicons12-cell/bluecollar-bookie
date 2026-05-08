@@ -67,7 +67,7 @@ router.get('/profile', authenticate, async (req, res) => {
   try {
     const { data: user, error } = await supabase
       .from('users')
-      .select('id, name, email, phone, business_name, plan, twilio_number, twilio_number_assigned, setup_status, setup_completed_at, created_at')
+      .select('id, name, email, phone, business_name, plan, role, twilio_number, twilio_number_assigned, setup_status, setup_completed_at, created_at')
       .eq('id', req.user.id)
       .single();
 
