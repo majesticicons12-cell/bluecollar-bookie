@@ -98,16 +98,19 @@ CREATE INDEX IF NOT EXISTS idx_users_google_id ON users(google_id);
 CREATE INDEX IF NOT EXISTS idx_users_plan ON users(plan);
 CREATE INDEX IF NOT EXISTS idx_users_setup_status ON users(setup_status);
 
-ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+-- RLS is disabled for users table (we use custom JWT auth with service_role key)
+-- ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
 ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE appointments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE subscriptions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admin_logs ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Users can view own data" ON users
-    FOR SELECT USING (auth.uid() = id);
+-- Users can view own data (disabled since using custom auth)
+-- CREATE POLICY "Users can view own data" ON users
+--     FOR SELECT USING (auth.uid() = id);
 
+-- Admin can view all users
 CREATE POLICY "Users can view own leads" ON leads
     FOR ALL USING (auth.uid() = user_id);
 

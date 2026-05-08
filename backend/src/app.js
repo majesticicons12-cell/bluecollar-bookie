@@ -48,6 +48,37 @@ app.all('/api/debug/test', async (req, res) => {
   }
 });
 
+app.get('/api/seed/admin', async (req, res) => {
+  try {
+    const bcrypt = require('bcryptjs');
+    const supabase = require('./config/database');
+    const email = 'axcis.ai@gmail.com';
+    const password = 'admin123';
+
+    const { data: existing } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', email)
+      .single();
+
+    if (existing) {
+      const hashed = await bcrypt.hash(password, 10);
+      await supabase.from('users').update({ password: hashed, role: 'admin' }).eq('id', existing.id);
+      return res.json({ success: true, message: 'Admin password updated' });
+    }
+
+    const hashed = await bcrypt.hash(password, 10);
+    const { error } = await supabase.from('users').insert([{
+      name: 'Axcis AI', email, password: hashed,
+      phone: '+919929094849', business_name: 'BlueCollar Bookie',
+      plan: 'premium', role: 'admin', setup_status: 'complete'
+    }]);
+    if (error) return res.status(500).json({ error: error.message });
+    res.json({ success: true, message: 'Admin user created' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/twilio', twilioRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
