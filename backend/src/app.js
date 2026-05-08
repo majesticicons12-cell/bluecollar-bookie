@@ -38,6 +38,18 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+app.all('/api/debug/test', async (req, res) => {
+  try {
+    const { data, error } = await require('./config/database')
+      .from('users')
+      .select('id')
+      .limit(1);
+    res.json({ success: !error, data, error: error?.message || null });
+  } catch (e) {
+    res.json({ success: false, error: e.message });
+  }
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/twilio', twilioRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
