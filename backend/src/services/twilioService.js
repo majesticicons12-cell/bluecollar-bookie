@@ -74,17 +74,19 @@ async function buyTwilioNumber(phoneNumber, contractorName) {
       .local
       .list({ areaCode, limit: 1 });
 
-    if (numbers.length === 0) {
+    let availableNumber;
+    if (numbers.length > 0) {
+      availableNumber = numbers[0];
+    } else {
       const numbersAny = await twilioClient.availablePhoneNumbers('US')
         .local
         .list({ limit: 1 });
       if (numbersAny.length === 0) return null;
+      availableNumber = numbersAny[0];
     }
 
-    const incomingNumber = numbers.length > 0 ? numbers[0] : numbersAny[0];
-
     const purchased = await twilioClient.incomingPhoneNumbers.create({
-      phoneNumber: incomingNumber.phoneNumber,
+      phoneNumber: availableNumber.phoneNumber,
       friendlyName: `${contractorName} - BlueCollar Bookie`,
       voiceUrl: `${process.env.FRONTEND_URL}/api/twilio/webhook`,
       statusCallback: `${process.env.FRONTEND_URL}/api/twilio/status`

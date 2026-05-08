@@ -193,7 +193,7 @@ router.post('/assign', authenticate, async (req, res) => {
     });
   } catch (error) {
     console.error('Assign number error:', error);
-    res.status(500).json({ error: 'Failed to assign number' });
+    res.status(500).json({ error: error.message || 'Failed to assign number' });
   }
 });
 
