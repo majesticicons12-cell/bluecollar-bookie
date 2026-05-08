@@ -18,14 +18,8 @@ app.use(cors({
   credentials: true
 }));
 
-app.use((req, res, next) => {
-  if (typeof req.body === 'string') {
-    try { req.body = JSON.parse(req.body); } catch (e) { req.body = {}; }
-  } else if (!req.body) {
-    req.body = {};
-  }
-  next();
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/health', (req, res) => {
   res.json({
@@ -75,8 +69,11 @@ app.use('/api/numbers', numberRoutes);
 app.use('/api/admin', adminRoutes);
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
+  if (err.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'Invalid JSON', detail: err.message });
+  }
+  console.error('Unhandled:', err);
+  res.status(500).json({ error: 'Something went wrong!', detail: err.message });
 });
 
 module.exports = app;
