@@ -19,17 +19,12 @@ app.use(cors({
 }));
 
 app.use((req, res, next) => {
-  let data = '';
-  req.on('data', chunk => { data += chunk; });
-  req.on('end', () => {
-    try {
-      if (data) req.body = JSON.parse(data);
-      else req.body = {};
-    } catch (e) {
-      req.body = {};
-    }
-    next();
-  });
+  if (typeof req.body === 'string') {
+    try { req.body = JSON.parse(req.body); } catch (e) { req.body = {}; }
+  } else if (!req.body) {
+    req.body = {};
+  }
+  next();
 });
 
 app.get('/api/health', (req, res) => {
@@ -53,9 +48,19 @@ app.all('/api/debug/test', async (req, res) => {
       .from('users')
       .select('id')
       .limit(1);
-    res.json({ success: !error, data, error: error?.message || null, body: req.body, method: req.method, contentType: req.headers['content-type'] });
+    res.json({
+      success: !error,
+      data,
+      error: error?.message || null,
+      body: req.body,
+      bodyType: typeof req.body,
+      bodyStr: JSON.stringify(req.body).substring(0, 200),
+      method: req.method,
+      contentType: req.headers['content-type'],
+      contentLength: req.headers['content-length']
+    });
   } catch (e) {
-    res.json({ success: false, error: e.message, body: req.body });
+    res.json({ success: false, error: e.message });
   }
 });
 
