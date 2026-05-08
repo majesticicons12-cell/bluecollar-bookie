@@ -44,9 +44,9 @@ app.all('/api/debug/test', async (req, res) => {
       .from('users')
       .select('id')
       .limit(1);
-    res.json({ success: !error, data, error: error?.message || null });
+    res.json({ success: !error, data, error: error?.message || null, body: req.body, method: req.method, contentType: req.headers['content-type'] });
   } catch (e) {
-    res.json({ success: false, error: e.message });
+    res.json({ success: false, error: e.message, body: req.body });
   }
 });
 
