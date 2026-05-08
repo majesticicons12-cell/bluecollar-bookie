@@ -1,12 +1,7 @@
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000/api'
-    : '/api';
-
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     const faqItems = document.querySelectorAll('.faq-item');
-    const contactForm = document.getElementById('contactForm');
     const navbar = document.querySelector('.navbar');
 
     navToggle.addEventListener('click', () => {
@@ -31,49 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
-
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Creating account...';
-
-            try {
-                const res = await fetch(`${API_URL}/auth/signup`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: data.name,
-                        email: data.email,
-                        password: data.phone.replace(/[^0-9]/g, '').slice(-6),
-                        phone: data.phone,
-                        businessName: data.business || data.name + "'s" + ' Service',
-                        plan: data.plan === 'pro' ? 'pro' : data.plan
-                    })
-                });
-
-                const result = await res.json();
-
-                if (res.ok) {
-                    localStorage.setItem('token', result.token);
-                    alert('Account created! Redirecting to setup...');
-                    window.location.href = 'setup.html';
-                } else {
-                    alert(result.error || 'Signup failed. Please try again.');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Start Free Trial';
-                }
-            } catch (error) {
-                alert('Network error. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Start Free Trial';
-            }
-        });
-    }
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
