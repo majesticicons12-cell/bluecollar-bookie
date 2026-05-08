@@ -11,100 +11,249 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">&#9881;</span>
-                <span class="logo-text">BlueCollar <span class="highlight">Bookie</span></span>
-            </a>
-            <div class="nav-right">
-                <button id="themeToggle" class="theme-toggle-btn" title="Toggle theme">&#127769;</button>
-                <span id="userName" class="user-greeting"></span>
-                <a href="admin.html" id="adminLink" class="btn btn-outline btn-sm" style="display:none;">Admin</a>
-                <button id="logoutBtn" class="btn btn-outline btn-sm">Logout</button>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">&#9881;</span>
+                    <span class="logo-text">BlueCollar <span class="highlight">Bookie</span></span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-panel="dashboard">
+                    <span class="nav-icon">&#9632;</span>
+                    Dashboard
+                </button>
+                <button class="nav-item" data-panel="leads">
+                    <span class="nav-icon">&#128172;</span>
+                    Leads
+                </button>
+                <button class="nav-item" data-panel="appointments">
+                    <span class="nav-icon">&#128197;</span>
+                    Appointments
+                </button>
+                <button class="nav-item" data-panel="settings">
+                    <span class="nav-icon">&#9881;</span>
+                    Settings
+                </button>
+                <div class="nav-divider"></div>
+                <button class="nav-item" data-panel="admin" id="adminNavItem" style="display:none;">
+                    <span class="nav-icon">&#128274;</span>
+                    Admin Panel
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-avatar" id="sidebarAvatar">U</div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name" id="sidebarUserName">User</div>
+                        <div class="sidebar-user-plan" id="sidebarUserPlan">PRO</div>
+                    </div>
+                </div>
+                <button class="sidebar-logout" id="logoutBtn">
+                    <span>&#10149;</span>
+                    Sign Out
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Topbar -->
+            <div class="main-topbar">
+                <div class="topbar-left">
+                    <button class="mobile-toggle" id="mobileToggle">&#9776;</button>
+                    <h2 id="panelTitle">Dashboard</h2>
+                </div>
+                <div class="topbar-right">
+                    <button id="themeToggle" class="theme-toggle-btn" title="Toggle theme">&#127769;</button>
+                </div>
+            </div>
+
+            <!-- Body -->
+            <div class="main-body">
+                <div id="setupBanner" class="setup-banner" style="display:none;">
+                    <div class="banner-content">
+                        <span class="banner-icon">&#9888;</span>
+                        <div>
+                            <strong>Setup Incomplete</strong>
+                            <p>Your AI receptionist is not fully configured. <a href="setup.html">Complete setup now</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Panel -->
+                <div class="panel active" id="panel-dashboard">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon leads">&#128172;</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="totalLeads">0</span>
+                                <span class="stat-label">Total Leads</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon qualified">&#10004;</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="qualifiedLeads">0</span>
+                                <span class="stat-label">Qualified</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon today">&#128197;</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="todayAppointments">0</span>
+                                <span class="stat-label">Today</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon upcoming">&#9200;</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="upcomingAppointments">0</span>
+                                <span class="stat-label">Upcoming</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <h3>Recent Leads</h3>
+                            <div id="recentLeads"><div class="empty-state">No leads yet</div></div>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Upcoming Appointments</h3>
+                            <div id="upcomingList"><div class="empty-state">No upcoming appointments</div></div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Your Business Number</h3>
+                        <div class="number-card">
+                            <div>
+                                <label>AI Receptionist Number</label>
+                                <div class="number-display" id="businessNumber">Loading...</div>
+                            </div>
+                            <div class="number-status">
+                                <span class="status-dot" id="statusDot"></span>
+                                <span id="statusText">Checking...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leads Panel -->
+                <div class="panel" id="panel-leads">
+                    <div class="dashboard-card">
+                        <h3 style="text-transform:none;letter-spacing:0;color:var(--dark);font-size:1.1rem;margin-bottom:20px;">All Leads</h3>
+                        <div class="leads-toolbar">
+                            <input type="text" id="leadSearch" placeholder="Search by name or phone...">
+                            <select id="leadStatusFilter">
+                                <option value="">All Status</option>
+                                <option value="new">New</option>
+                                <option value="contacted">Contacted</option>
+                                <option value="qualified">Qualified</option>
+                                <option value="in_progress">In Progress</option>
+                            </select>
+                        </div>
+                        <div class="leads-table-wrap">
+                            <table class="leads-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leadsTableBody">
+                                    <tr><td colspan="5" style="text-align:center;padding:40px;color:var(--gray-400);">No leads found</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointments Panel -->
+                <div class="panel" id="panel-appointments">
+                    <div class="dashboard-card">
+                        <h3 style="text-transform:none;letter-spacing:0;color:var(--dark);font-size:1.1rem;margin-bottom:20px;">All Appointments</h3>
+                        <div class="appt-filters">
+                            <select id="apptStatusFilter">
+                                <option value="">All Status</option>
+                                <option value="booked">Booked</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div id="appointmentsList"><div class="empty-state">No appointments</div></div>
+                    </div>
+                </div>
+
+                <!-- Settings Panel -->
+                <div class="panel" id="panel-settings">
+                    <div class="settings-section">
+                        <h3>Profile</h3>
+                        <div class="settings-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="settingsName" placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="settingsEmail" placeholder="your@email.com" readonly style="background:var(--gray-50);">
+                            </div>
+                        </div>
+                        <div class="settings-row" style="margin-top:16px;">
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" id="settingsPhone" placeholder="+1 (555) 000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label>Business Name</label>
+                                <input type="text" id="settingsBusiness" placeholder="Your business">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top:20px;" id="saveProfileBtn">Save Changes</button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Your Plan</h3>
+                        <div class="settings-plan-card">
+                            <div class="settings-plan-info">
+                                <h4 id="settingsPlanName">Pro Plan</h4>
+                                <p id="settingsPlanDesc">Access to all Pro features</p>
+                            </div>
+                            <span class="settings-badge active" id="settingsPlanBadge">Active</span>
+                        </div>
+                        <div style="margin-top:16px;">
+                            <a href="signup.html" class="btn btn-outline">Change Plan</a>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Setup Status</h3>
+                        <div class="setup-link-card">
+                            <div>
+                                <p id="settingsSetupStatus">Not started</p>
+                            </div>
+                            <a href="setup.html" class="btn btn-outline btn-sm">Complete Setup</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Panel (placeholder - links to admin.html) -->
+                <div class="panel" id="panel-admin">
+                    <div class="dashboard-card">
+                        <h3 style="text-transform:none;letter-spacing:0;color:var(--dark);font-size:1.1rem;margin-bottom:20px;">Admin Panel</h3>
+                        <p style="color:var(--gray-600);margin-bottom:20px;">Manage users, plans, and view system stats.</p>
+                        <a href="admin.html" class="btn btn-primary">Open Admin Panel</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <main class="dashboard-main">
-        <div class="container">
-            <div id="setupBanner" class="setup-banner" style="display:none;">
-                <div class="banner-content">
-                    <span class="banner-icon">&#9888;</span>
-                    <div>
-                        <strong>Setup Incomplete</strong>
-                        <p>Your AI receptionist is not fully configured. <a href="setup.html">Complete setup now</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-header">
-                <h1>Dashboard</h1>
-                <p id="greetingText">Welcome back!</p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon leads">&#128172;</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="totalLeads">0</span>
-                        <span class="stat-label">Total Leads</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon qualified">&#10004;</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="qualifiedLeads">0</span>
-                        <span class="stat-label">Qualified</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon today">&#128197;</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="todayAppointments">0</span>
-                        <span class="stat-label">Today</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon upcoming">&#9200;</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="upcomingAppointments">0</span>
-                        <span class="stat-label">Upcoming</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-grid">
-                <div class="dashboard-section">
-                    <h2>Recent Leads</h2>
-                    <div id="recentLeads" class="leads-list">
-                        <div class="empty-state">No leads yet</div>
-                    </div>
-                </div>
-
-                <div class="dashboard-section">
-                    <h2>Upcoming Appointments</h2>
-                    <div id="upcomingList" class="appointments-list">
-                        <div class="empty-state">No upcoming appointments</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-section">
-                <h2>Your Business Number</h2>
-                <div class="number-card">
-                    <div>
-                        <label>AI Receptionist Number</label>
-                        <div class="number-display" id="businessNumber">Loading...</div>
-                    </div>
-                    <div class="number-status">
-                        <span class="status-dot" id="statusDot"></span>
-                        <span id="statusText">Checking...</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    </div>
 
     <script src="js/theme.js"></script>
     <script src="js/dashboard.js"></script>

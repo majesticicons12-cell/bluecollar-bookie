@@ -5,14 +5,20 @@ const supabase = require('../config/database');
 
 router.get('/', authenticate, async (req, res) => {
   try {
-    const { data: appointments, error } = await supabase
+    const { status, limit } = req.query;
+    let query = supabase
       .from('appointments')
       .select('*')
       .eq('user_id', req.user.id)
       .order('date', { ascending: true });
 
+    if (status) query = query.eq('status', status);
+    if (limit) query = query.limit(parseInt(limit));
+
+    const { data: appointments, error } = await query;
+
     if (error) throw error;
-    res.json({ appointments });
+    res.json(appointments || []);
   } catch (error) {
     console.error('Get appointments error:', error);
     res.status(500).json({ error: 'Failed to fetch appointments' });

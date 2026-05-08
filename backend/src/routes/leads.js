@@ -5,14 +5,21 @@ const supabase = require('../config/database');
 
 router.get('/', authenticate, async (req, res) => {
   try {
-    const { data: leads, error } = await supabase
+    const { status, search, limit } = req.query;
+    let query = supabase
       .from('leads')
       .select('*')
       .eq('user_id', req.user.id)
       .order('created_at', { ascending: false });
 
+    if (status) query = query.eq('status', status);
+    if (search) query = query.or(`name.ilike.%${search}%,phone.ilike.%${search}%`);
+    if (limit) query = query.limit(parseInt(limit));
+
+    const { data: leads, error } = await query;
+
     if (error) throw error;
-    res.json({ leads });
+    res.json(leads || []);
   } catch (error) {
     console.error('Get leads error:', error);
     res.status(500).json({ error: 'Failed to fetch leads' });

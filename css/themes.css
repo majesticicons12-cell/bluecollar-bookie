@@ -279,3 +279,114 @@
   background: var(--card);
   border-color: var(--card-border);
 }
+
+[data-theme="dark"] .dashboard-layout {
+  background: var(--bg);
+}
+
+[data-theme="dark"] .main-topbar {
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom-color: var(--card-border);
+}
+
+[data-theme="dark"] .main-topbar h2,
+[data-theme="dark"] .mobile-toggle {
+  color: var(--text);
+}
+
+[data-theme="dark"] .topbar-right .theme-toggle-btn {
+  background: var(--card);
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .dashboard-card,
+[data-theme="dark"] .settings-section,
+[data-theme="dark"] .leads-table th,
+[data-theme="dark"] .appt-card {
+  background: var(--card);
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .stat-card .stat-number,
+[data-theme="dark"] .dashboard-card h3,
+[data-theme="dark"] .settings-section h3,
+[data-theme="dark"] .leads-table td,
+[data-theme="dark"] .appt-card-info h4,
+[data-theme="dark"] .settings-plan-info h4 {
+  color: var(--text);
+}
+
+[data-theme="dark"] .leads-table th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .leads-table td {
+  border-bottom-color: var(--card-border);
+}
+
+[data-theme="dark"] .leads-table tr:hover td {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .appt-card {
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .settings-plan-card,
+[data-theme="dark"] .setup-link-card {
+  background: var(--bg-secondary);
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .settings-plan-info p,
+[data-theme="dark"] .setup-link-card p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .settings-section .form-group input,
+[data-theme="dark"] .settings-section .form-group select,
+[data-theme="dark"] .leads-toolbar input,
+[data-theme="dark"] .leads-toolbar select,
+[data-theme="dark"] .appt-filters select {
+  background: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--input-text);
+}
+
+[data-theme="dark"] .lead-item {
+  border-bottom-color: var(--card-border);
+}
+
+[data-theme="dark"] .lead-info h4,
+[data-theme="dark"] .appt-card-info p {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .appt-card-time .date {
+  color: var(--text);
+}
+
+[data-theme="dark"] .auth-page {
+  background: var(--bg);
+}
+
+[data-theme="dark"] .auth-card {
+  background: var(--card);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="dark"] .auth-header h1 {
+  color: var(--text);
+}
+
+[data-theme="dark"] .google-btn {
+  background: var(--card);
+  border-color: var(--card-border);
+  color: var(--text);
+}
+
+[data-theme="dark"] .google-btn:hover {
+  background: var(--bg-secondary);
+}

@@ -78,4 +78,19 @@ router.get('/profile', authenticate, async (req, res) => {
   }
 });
 
+router.put('/profile', authenticate, async (req, res) => {
+  try {
+    const { name, phone, business_name } = req.body;
+    const { error } = await supabase
+      .from('users')
+      .update({ name, phone, business_name })
+      .eq('id', req.user.id);
+
+    if (error) throw error;
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update profile' });
+  }
+});
+
 module.exports = router;
